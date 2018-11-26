@@ -1,6 +1,6 @@
 # PrefixComboBox Add-on for Vaadin 8
 
-${ComponentClassName} is a UI component add-on for Vaadin 8.
+PrefixComboBox is a UI component add-on for Vaadin 8. It is version of ComboBox with Prefix in text box.
 
 ## Online demo
 
@@ -51,15 +51,12 @@ Debugging client side code in the prefixcombobox-demo project:
  
 ## Release notes
 
-### Version 1.0-SNAPSHOT
-- ...
-- ...
+### Version 1.0.1
+- First version, see README.md and JavaDoc
 
 ## Roadmap
 
-This component is developed as a hobby with no public roadmap or any guarantees of upcoming releases. That said, the following features are planned for upcoming releases:
-- ...
-- ...
+This component is developed as a hobby with no public roadmap or any guarantees of upcoming releases. 
 
 ## Issue tracking
 
@@ -79,7 +76,10 @@ Contributions are welcome, but there are no guarantees that they are accepted as
 
 Add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
-PrefixComboBox is written by <...>
+PrefixComboBox is written by Tatu Lund
+
+Major pieces of development of this add-on has been sponsored by multiple Support and
+Prime customers of Vaadin. See vaadin.com/support and Development on Demand for more details.
 
 # Developer Guide
 
@@ -87,23 +87,13 @@ PrefixComboBox is written by <...>
 
 Here is a simple example on how to try out the add-on component:
 
-<...>
-
 For a more comprehensive example, see src/test/java/org/vaadin/template/demo/DemoUI.java
 
 ## Features
 
 ### Feature A
 
-<...>
-
-### Feature B
-
-<...>
-
-### Feature C
-
-<...>
+- A prefix can be set with prefixComboBox.setPrefix(..) method
 
 ## API
 
