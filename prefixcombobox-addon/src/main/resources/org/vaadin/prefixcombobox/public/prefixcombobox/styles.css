@@ -1,0 +1,10 @@
+.prefix-combobox-prefix {
+	display: inline;
+	padding: 6.5px;
+	border: 1px solid #c5c5c5;
+	border-radius: 4px;
+	border-right: none;	
+	border-bottom-right-radius: 0px;
+	border-top-right-radius: 0px;
+	padding-right: 1px;
+}
