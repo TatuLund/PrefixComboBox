@@ -37,17 +37,19 @@ public class DemoUI extends UI
         // Initialize our new UI component
         VerticalLayout mainLayout = new VerticalLayout();
 
-        List<String> items = new ArrayList<>(Arrays.asList("blue", "red", "green", "purple", "grey", "orange"));
+        List<String> items = new ArrayList<>(Arrays.asList("blue", "red", "green", "purple", "deep purple", "grey", "orange"));
 
         PrefixComboBox<String> comboBox = new PrefixComboBox<>("",items);
         comboBox.setValue("red");
-        comboBox.setPageLength(0);
+//        comboBox.setPageLength(0);
+        comboBox.setPopupWidth(null);
+        comboBox.setMaxInputLength(10);
         comboBox.setItems(items);
         comboBox.setPrefix("Color");
         comboBox.setWidth("200px");
-        
         Label label = new Label("Value: ");
         comboBox.setTextInputAllowed(true);
+        comboBox.openPopup();
         
         comboBox.setNewItemProvider(value -> {
             items.add(value);
@@ -57,6 +59,9 @@ public class DemoUI extends UI
         mainLayout.addComponents(comboBox, label);
         comboBox.addValueChangeListener(event -> {
         	label.setValue("Value: "+comboBox.getValue());
+        });
+        comboBox.addPopupOpenedListener(event -> {
+        	mainLayout.addComponent(new Label("ComboBox opened"));
         });
         
         setContent(mainLayout);

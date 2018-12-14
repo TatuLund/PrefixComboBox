@@ -54,6 +54,11 @@ Debugging client side code in the prefixcombobox-demo project:
  
 ## Release notes
 
+### Version 1.1.0
+- Added PopupOpenedEvent and PopupOpenedListener
+- Added openPopup() and openPopup(int page) methods
+- Added setMaxInputLength(..) method 
+
 ### Version 1.0.1
 - First version, see README.md and JavaDoc
 

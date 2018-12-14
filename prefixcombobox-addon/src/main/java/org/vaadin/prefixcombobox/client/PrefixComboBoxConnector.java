@@ -8,7 +8,9 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Node;
 import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.user.client.ui.HTML;
+import com.vaadin.client.VConsole;
 import com.vaadin.client.WidgetUtil;
+import com.vaadin.client.communication.RpcProxy;
 import com.vaadin.client.communication.StateChangeEvent;
 import com.vaadin.client.ui.VComboBox;
 import com.vaadin.client.ui.combobox.ComboBoxConnector;
@@ -17,14 +19,34 @@ import com.vaadin.shared.ui.Connect;
 @Connect(PrefixComboBox.class)
 public class PrefixComboBoxConnector extends ComboBoxConnector {
 
+    PrefixComboBoxServerRpc rpc = RpcProxy.create(PrefixComboBoxServerRpc.class, this);
+
 	private String prefix;
 	HTML html = null;
 	private static final String STYLE_ADJUSTMENTS = "padding-left: 1px; border-left: none; border-top-left-radius: 0px; border-bottom-left-radius: 0px";
 	
 	public PrefixComboBoxConnector() {
 		super();
+		
+		registerRpc(PrefixComboBoxClientRpc.class, new PrefixComboBoxClientRpc() {
+			@Override
+			public void showPopup(int currentPage) {
+				if (currentPage == -1) {					
+					getWidget().suggestionPopup.showSuggestions(getWidget().currentPage);
+				} else {
+					getWidget().suggestionPopup.showSuggestions(currentPage);	
+				}
+			}			
+		});
+		
 		getWidget().setStyleName("prefix-combobox", true);
 		getWidget().tb.setStyleName("prefix-combobox-input",true);
+		
+		getWidget().suggestionPopup.addAttachHandler(event -> {
+			if (getWidget().suggestionPopup.isShowing()) {
+				getRpc().popupOpened();
+			}
+		});
 	}
 	
     @Override
@@ -36,6 +58,14 @@ public class PrefixComboBoxConnector extends ComboBoxConnector {
     public void onStateChanged(StateChangeEvent stateChangeEvent) {
         super.onStateChanged(stateChangeEvent);
 
+        
+        if (stateChangeEvent.hasPropertyChanged("maxLength")) {
+        	int maxLength = getState().maxLength;
+        	if (maxLength > 0) {
+        		getWidget().tb.setMaxLength(maxLength);        		
+        	}
+        }
+        
         if (stateChangeEvent.hasPropertyChanged("prefix")) {
         	if (getState().prefix.equals("")) return;
         	
@@ -83,4 +113,10 @@ public class PrefixComboBoxConnector extends ComboBoxConnector {
 	public PrefixComboBoxState getState() {
     	return (PrefixComboBoxState) super.getState(); 
     }
+
+	private PrefixComboBoxServerRpc getRpc() {
+		return getRpcProxy(PrefixComboBoxServerRpc.class);
+	}
+
+
 }
