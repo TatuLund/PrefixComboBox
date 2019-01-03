@@ -8,5 +8,6 @@ public class PrefixComboBoxState extends ComboBoxState {
     public String prefix = "";
     public boolean prefixHtml = false;
     public int maxLength = -1;
+	public boolean selectAllOnFocus = false;
 
 }

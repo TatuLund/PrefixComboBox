@@ -26,8 +26,8 @@ public class PrefixComboBoxConnector extends ComboBoxConnector {
 	private static final String STYLE_ADJUSTMENTS = "padding-left: 1px; border-left: none; border-top-left-radius: 0px; border-bottom-left-radius: 0px";
 	
 	public PrefixComboBoxConnector() {
-		super();
-		
+		super();		
+	
 		registerRpc(PrefixComboBoxClientRpc.class, new PrefixComboBoxClientRpc() {
 			@Override
 			public void showPopup(int currentPage) {
@@ -36,7 +36,12 @@ public class PrefixComboBoxConnector extends ComboBoxConnector {
 				} else {
 					getWidget().suggestionPopup.showSuggestions(currentPage);	
 				}
-			}			
+			}
+
+			@Override
+			public void selectText() {
+				getWidget().tb.setSelectionRange(0, getWidget().tb.getValue().length());
+			}
 		});
 		
 		getWidget().setStyleName("prefix-combobox", true);
@@ -47,11 +52,12 @@ public class PrefixComboBoxConnector extends ComboBoxConnector {
 				getRpc().popupOpened();
 			}
 		});
+		
 	}
 	
     @Override
-    public VComboBox getWidget() {
-        return (VComboBox) super.getWidget();
+    public VPrefixComboBox getWidget() {
+        return (VPrefixComboBox) super.getWidget();
     }
 
     @Override

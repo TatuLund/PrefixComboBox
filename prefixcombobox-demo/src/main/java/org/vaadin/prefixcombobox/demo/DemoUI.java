@@ -15,6 +15,7 @@ import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
@@ -41,7 +42,7 @@ public class DemoUI extends UI
 
         PrefixComboBox<String> comboBox = new PrefixComboBox<>("",items);
         comboBox.setValue("red");
-//        comboBox.setPageLength(0);
+        comboBox.setPageLength(0);
         comboBox.setPopupWidth(null);
         comboBox.setMaxInputLength(10);
         comboBox.setItems(items);
@@ -50,20 +51,24 @@ public class DemoUI extends UI
         Label label = new Label("Value: ");
         comboBox.setTextInputAllowed(true);
         comboBox.openPopup();
+        comboBox.setSelectTextOnClick(true);
         
         comboBox.setNewItemProvider(value -> {
             items.add(value);
             comboBox.getDataProvider().refreshAll(); //I don't know if it's required but it doesn't impact the bug
             return Optional.ofNullable(value);
         });
-        mainLayout.addComponents(comboBox, label);
+        Button button = new Button("Selext text");
+        button.addClickListener(event -> {
+        	comboBox.selectText();
+        });
+        mainLayout.addComponents(comboBox, button, label);
         comboBox.addValueChangeListener(event -> {
         	label.setValue("Value: "+comboBox.getValue());
         });
         comboBox.addPopupOpenedListener(event -> {
         	mainLayout.addComponent(new Label("ComboBox opened"));
         });
-        
         setContent(mainLayout);
     }
 }

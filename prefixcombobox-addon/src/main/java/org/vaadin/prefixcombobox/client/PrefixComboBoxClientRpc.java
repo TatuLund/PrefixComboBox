@@ -6,4 +6,6 @@ public interface PrefixComboBoxClientRpc extends ClientRpc {
 	
 	public void showPopup(int currentPage);
 
+	public void selectText();
+	
 }

@@ -170,6 +170,32 @@ public class PrefixComboBox<T> extends ComboBox<T> {
 		getRpc().showPopup(page);
 	}
 	
+	/**
+	 * Set focus to this ComboBox and set the text in the text box selected
+	 */
+	public void selectText() {
+		this.focus();
+		getRpc().selectText();
+	}
+
+	/**
+	 * Configure whether to mark text in the text box automatically selected on mouse focus click
+	 * 
+	 * @param selectOnClick true = The text in text box is automatically set selected
+	 */
+	public void setSelectTextOnClick(boolean selectOnClick) {
+		getState().selectAllOnFocus = selectOnClick;
+	}
+	
+	/**
+	 * Check if text is automatically selected or not
+	 * 
+	 * @return Boolean value
+	 */
+	public boolean isSelectTextOnClick() {
+		return getState().selectAllOnFocus;
+	}
+	
 	private PrefixComboBoxClientRpc getRpc() {
 		return getRpcProxy(PrefixComboBoxClientRpc.class);
 	}
