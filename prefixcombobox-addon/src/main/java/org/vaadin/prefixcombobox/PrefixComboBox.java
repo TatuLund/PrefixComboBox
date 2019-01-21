@@ -45,6 +45,11 @@ public class PrefixComboBox<T> extends ComboBox<T> {
 			public void popupOpened() {
 				fireEvent(new PopupOpenedEvent<T>(component));
 			}
+
+			@Override
+			public void popupClosed() {
+				fireEvent(new PopupClosedEvent<T>(component));				
+			}
         	
         });
 	}
@@ -152,6 +157,17 @@ public class PrefixComboBox<T> extends ComboBox<T> {
      */
 	public Registration addPopupOpenedListener(PopupOpenedListener<T> listener) {
 		return addListener(PopupOpenedEvent.class, listener, PopupOpenedListener.POPUP_OPENED_METHOD);
+	}
+
+    /**
+     * Add a new PopupClosedListener
+     * The PopupClosedEvent is fired when the suggestion popup of the ComboBox is closed
+     * 
+     * @param listener A new PopupClosedListener
+     * @return Registration
+     */
+	public Registration addPopupClosedListener(PopupClosedListener<T> listener) {
+		return addListener(PopupClosedEvent.class, listener, PopupClosedListener.POPUP_CLOSED_METHOD);
 	}
 
 	/**

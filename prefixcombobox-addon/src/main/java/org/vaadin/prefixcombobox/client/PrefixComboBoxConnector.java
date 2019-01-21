@@ -50,6 +50,8 @@ public class PrefixComboBoxConnector extends ComboBoxConnector {
 		getWidget().suggestionPopup.addAttachHandler(event -> {
 			if (getWidget().suggestionPopup.isShowing()) {
 				getRpc().popupOpened();
+			} else {
+				getRpc().popupClosed();
 			}
 		});
 		

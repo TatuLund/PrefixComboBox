@@ -6,4 +6,6 @@ public interface PrefixComboBoxServerRpc extends ServerRpc {
 	
 	public void popupOpened();
 
+	public void popupClosed();
+
 }

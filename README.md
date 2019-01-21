@@ -54,6 +54,9 @@ Debugging client side code in the prefixcombobox-demo project:
  
 ## Release notes
 
+### Version 1.3.0
+- Added PopupClosedEvent and PopupClosedListener
+
 ### Version 1.2.0
 - Added setSelectTextOnClick(..) feature
 - Added selectText() method
