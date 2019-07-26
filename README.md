@@ -54,6 +54,9 @@ Debugging client side code in the prefixcombobox-demo project:
  
 ## Release notes
 
+### Version 1.3.1
+- Added support for Ctrl-A to select all text in the text box
+
 ### Version 1.3.0
 - Added PopupClosedEvent and PopupClosedListener
 

@@ -142,7 +142,7 @@ public class PrefixComboBox<T> extends ComboBox<T> {
     /**
      * Get current maximum input length
      * 
-     * @return
+     * @return Get current max input length
      */
     public int getMaxInputLenght() {
     	return getState().maxLength;
