@@ -42,6 +42,11 @@ public class PrefixComboBoxConnector extends ComboBoxConnector {
 			public void selectText() {
 				getWidget().tb.setSelectionRange(0, getWidget().tb.getValue().length());
 			}
+
+			@Override
+			public void setCursorPos(int position) {
+				getWidget().tb.setCursorPos(position);				
+			}
 		});
 		
 		getWidget().setStyleName("prefix-combobox", true);

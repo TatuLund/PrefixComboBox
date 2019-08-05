@@ -8,4 +8,6 @@ public interface PrefixComboBoxClientRpc extends ClientRpc {
 
 	public void selectText();
 	
+	public void setCursorPos(int position);
+	
 }

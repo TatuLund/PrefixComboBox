@@ -10,6 +10,7 @@ import com.vaadin.data.provider.DataCommunicator;
 import com.vaadin.data.provider.DataProvider;
 import com.vaadin.shared.Registration;
 import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.ItemCaptionGenerator;
 
 /**
  * A filtering dropdown single-select. Items are filtered based on user input.
@@ -24,7 +25,6 @@ import com.vaadin.ui.ComboBox;
  */
 public class PrefixComboBox<T> extends ComboBox<T> {
 
-	
     /**
      * Constructs an empty prefix combo box without a caption. The content of the combo
      * box can be set with {@link #setDataProvider(DataProvider)} or
@@ -212,8 +212,58 @@ public class PrefixComboBox<T> extends ComboBox<T> {
 		return getState().selectAllOnFocus;
 	}
 	
+	/**
+	 * Set the cursor position in the text box of the PrefixComboBox
+	 * 
+	 * @param position The position to be set
+	 */
+	public void setCursorPos(int position) {
+		int maxLength = getSelectedItemCaption().length();
+		if (position < 0) throw new IllegalArgumentException("Cursor position can't be negative");
+		if (position > maxLength) position = maxLength;
+		getRpc().setCursorPos(position);
+	}
+
+	/**
+	 * Get the item caption of currently selected item
+	 * 
+	 * @return The selected item caption
+	 */
+	public String getSelectedItemCaption() {
+		if (getValue() == null || getValue() == this.getEmptyValue()) return this.getEmptySelectionCaption();
+		ItemCaptionGenerator<T> generator = this.getItemCaptionGenerator();
+		return generator.apply(getValue());
+	}
+
+	/**
+	 * Change setting of cursor on focus
+	 * 
+	 * @param cursorOnFocus If true cursor is set in position 0 on focus, else unset
+	 */
+	public void setCursorOnFocus(boolean cursorOnFocus) {
+		getState().setCursorOnFocus = cursorOnFocus;
+	}
+
+	/**
+	 * Check if cursor is automatically set or not
+	 * 
+	 * @return Boolean value
+	 */
+	public boolean isCursorOnFocus() {
+		return getState().setCursorOnFocus;
+	}
+	
+	/**
+	 * Set the focus to this component
+	 */
+	@Override
+	public void focus() {
+		super.focus();
+		if (getState().setCursorOnFocus) setCursorPos(0);
+	}
+	
 	private PrefixComboBoxClientRpc getRpc() {
 		return getRpcProxy(PrefixComboBoxClientRpc.class);
 	}
-	
+
 }

@@ -49,20 +49,32 @@ public class DemoUI extends UI
         comboBox.setTextInputAllowed(true);
         comboBox.openPopup();
         comboBox.setSelectTextOnClick(true);
+        comboBox.setCursorOnFocus(true);
         comboBox.setPlaceholder("color");
         comboBox.setNewItemProvider(value -> {
             items.add(value);
             comboBox.getDataProvider().refreshAll();
             return Optional.ofNullable(value);
         });
-        Button button = new Button("Selext text");
-        button.addClickListener(event -> {
-        	System.out.println("Button");
+        Button selectButton = new Button("Selext text");
+        selectButton.addClickListener(event -> {
         	comboBox.selectText();
         });
-        mainLayout.addComponents(comboBox, button, label);
+        Button focusButton = new Button("Focus");
+        focusButton.addClickListener(event -> {
+        	comboBox.focus();
+        });
+        Button selectOnFocusButton = new Button("Toggle select on click");
+        selectOnFocusButton.addClickListener(event -> {
+        	comboBox.setSelectTextOnClick(!comboBox.isSelectTextOnClick());
+        });
+        Button cursorOnFocusButton = new Button("Toggle cursor set");
+        cursorOnFocusButton.addClickListener(event -> {
+        	comboBox.setCursorOnFocus(!comboBox.isCursorOnFocus());
+        });
+        mainLayout.addComponents(comboBox, selectButton, focusButton, selectOnFocusButton, cursorOnFocusButton, label);
         comboBox.addValueChangeListener(event -> {
-        	label.setValue("Value: "+comboBox.getValue());
+        	label.setValue("Value: "+comboBox.getValue()+" Caption: "+comboBox.getSelectedItemCaption());
         });
         comboBox.addPopupOpenedListener(event -> {
         	mainLayout.addComponent(new Label("ComboBox opened"));

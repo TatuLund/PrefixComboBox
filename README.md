@@ -54,6 +54,12 @@ Debugging client side code in the prefixcombobox-demo project:
  
 ## Release notes
 
+### Version 1.4.0
+- Added setCursorOnFocus(boolean)
+- Added setCursorPos(int)
+- Added String getSelectedItemCaption()
+- Added setCursorOnFocus(boolean)
+
 ### Version 1.3.1
 - Added support for Ctrl-A to select all text in the text box
 

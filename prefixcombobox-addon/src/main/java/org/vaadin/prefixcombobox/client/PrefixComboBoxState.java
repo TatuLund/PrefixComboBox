@@ -9,5 +9,6 @@ public class PrefixComboBoxState extends ComboBoxState {
     public boolean prefixHtml = false;
     public int maxLength = -1;
 	public boolean selectAllOnFocus = false;
+	public boolean setCursorOnFocus = false;
 
 }
