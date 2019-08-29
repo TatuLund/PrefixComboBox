@@ -51,6 +51,7 @@ public class DemoUI extends UI
         comboBox.setSelectTextOnClick(true);
         comboBox.setCursorOnFocus(true);
         comboBox.setPlaceholder("color");
+        comboBox.setTextUpdateInterval(250);
         comboBox.setNewItemProvider(value -> {
             items.add(value);
             comboBox.getDataProvider().refreshAll();

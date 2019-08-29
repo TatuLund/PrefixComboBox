@@ -54,6 +54,9 @@ Debugging client side code in the prefixcombobox-demo project:
  
 ## Release notes
 
+### Version 1.5.0
+- Added setTextUpdateInterval to set delayed update of filter
+
 ### Version 1.4.0
 - Added setCursorOnFocus(boolean)
 - Added setCursorPos(int)

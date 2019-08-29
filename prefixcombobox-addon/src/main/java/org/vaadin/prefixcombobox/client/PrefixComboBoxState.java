@@ -10,5 +10,5 @@ public class PrefixComboBoxState extends ComboBoxState {
     public int maxLength = -1;
 	public boolean selectAllOnFocus = false;
 	public boolean setCursorOnFocus = false;
-
+	public int textUpdateInterval = -1;
 }

@@ -78,6 +78,13 @@ public class PrefixComboBoxConnector extends ComboBoxConnector {
         		getWidget().tb.setMaxLength(maxLength);        		
         	}
         }
+
+        if (stateChangeEvent.hasPropertyChanged("textUpdateInterval")) {
+        	int updateInterval = getState().textUpdateInterval;
+        	if (updateInterval > 0) {
+        		getWidget().setUpdateInterval(updateInterval);        		
+        	}
+        }
         
         if (stateChangeEvent.hasPropertyChanged("prefix")) {
         	if (getState().prefix.equals("")) return;

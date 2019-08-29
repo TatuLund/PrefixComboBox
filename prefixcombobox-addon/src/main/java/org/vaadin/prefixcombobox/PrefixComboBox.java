@@ -195,6 +195,19 @@ public class PrefixComboBox<T> extends ComboBox<T> {
 	}
 
 	/**
+	 * Set a delay for text box input. This helps with lazy loading ComboBoxes with
+	 * slow backend. The filtering is done if no new keypresses are done after the
+	 * delay.
+	 * 
+	 * Setting the delay to 0 or negative will disable the feature (default)
+	 * 
+	 * @param updateInterval The delay in millis
+	 */
+	public void setTextUpdateInterval(int updateInterval) {
+		getState().textUpdateInterval = updateInterval;
+	}
+	
+	/**
 	 * Configure whether to mark text in the text box automatically selected on mouse focus click
 	 * 
 	 * @param selectOnClick true = The text in text box is automatically set selected
